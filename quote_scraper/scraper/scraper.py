@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-from utils.utils import extract_text, parse_date
+from utils.date_processor import parse_date
+from utils.text_processor import extract_text
+from utils.url_processor import extract_url
 
 BASE_URL = 'https://quotes.toscrape.com'
 

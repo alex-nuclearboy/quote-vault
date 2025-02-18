@@ -14,7 +14,11 @@ def fetch_quotes(soup, authors_urls):
     for quote in soup.find_all('div', class_='quote'):
         text = extract_text(quote.find('span', class_='text'))
         author = extract_text(quote.find('small', class_='author'))
-        author_url = BASE_URL + quote.find('a')['href']
+        author_link_tag = quote.find('a')
+        if author_link_tag:
+            author_url = extract_url(
+                author_link_tag, 'href', base_url=BASE_URL
+            )
         tags = [
                 extract_text(tag)
                 for tag in quote.find_all('a', class_='tag')

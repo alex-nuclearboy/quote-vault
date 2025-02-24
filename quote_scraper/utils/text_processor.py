@@ -1,4 +1,7 @@
 import re
+from utils.logger import setup_logger
+
+logger = setup_logger(__name__)
 
 
 def extract_text(tag, default=''):
@@ -13,4 +16,6 @@ def extract_text(tag, default=''):
         text = re.sub(r'\s([.,;!?])', r'\1', text)
 
         return text
+
+    logger.warning("Tag is None. Returning default text.")
     return default

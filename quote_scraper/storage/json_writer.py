@@ -1,6 +1,10 @@
 import os
 import json
 
+from utils.logger import setup_logger
+
+logger = setup_logger(__name__)
+
 # Define the path to the 'data' folder
 OUTPUT_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), '../..', 'data'
@@ -25,10 +29,14 @@ def write_to_json(data, filename):
             json.dump(data, f, ensure_ascii=False, indent=2)
 
         if 'quotes' in filename:
-            print(f"{len(data)} quotes successfully written to {file_path}")
+            logger.info(
+                f"{len(data)} quotes successfully written to {file_path}."
+            )
         elif 'authors' in filename:
-            print(f"{len(data)} authors successfully written to {file_path}.")
+            logger.info(
+                f"{len(data)} authors successfully written to {file_path}."
+            )
         else:
-            print(f"Data successfully written to {file_path}.")
+            logger.info(f"Data successfully written to {file_path}.")
     except Exception as e:
-        print(f"Error writing to {filename}: {e}")
+        logger.info(f"Error writing to {filename}: {e}")
